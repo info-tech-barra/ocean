@@ -1,12 +1,19 @@
-#importar framework para criar back end
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask("meu app")
-#criar pasta ou caminho do site
+app = Flask("Meu App")
+
+posts = [
+    {
+        "titulo": "Minha primeira postagem",
+        "texto": "teste"
+    },
+    {
+        "titulo": "Segundo Post",
+        "texto": "outro teste"
+    }
+]
+
 @app.route('/')
-def hello():
-     return "Olá Mundo"
-#criar pasta ou caminho do site
-@app.route('/novo')
-def novo():
-     return "<h1> Nova Página </h1>"
+def exibir_entradas():
+    entradas = posts # Mock das postagens
+    return render_template('exibir_entradas.html', entradas=entradas)
